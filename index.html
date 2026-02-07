@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BELANGRIJK: Zorgt dat Formspree je website herkent op GitHub Pages -->
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    
+    <!-- Deze tag is essentieel om de 'Method unsupported' fout op GitHub op te lossen -->
+    <meta name="referrer" content="origin">
     <title>Klusjesdag | Explorers Scouting Alblasserdam</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -18,17 +17,19 @@
 <body class="bg-gray-50 text-gray-800">
 
     <header class="bg-white shadow-md py-4 text-center">
+        <!-- Logo van Scouting Alblasserdam -->
         <img src="https://www.scouting-alblasserdam.nl" alt="Logo" class="h-20 mx-auto mb-2">
         <h2 class="text-xl font-bold text-scout-green">Explorers Scouting Alblasserdam</h2>
     </header>
 
     <div class="container mx-auto max-w-2xl mt-10 px-4 mb-20">
-        <!-- Let op: action URL moet exact overeenkomen met je Formspree dashboard -->
-        <form id="klusForm" action="https://formspree.io/f/mzdabryo" method="POST" class="bg-white rounded-2xl shadow-xl p-8">
+        <!-- FORMULIER START -->
+        <form id="klusForm" action="https://formspree.io" method="POST" class="bg-white rounded-2xl shadow-xl p-8">
             
-            <!-- STAP 1 -->
+            <!-- STAP 1: CATEGORIE -->
             <div id="step1" class="step active">
                 <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-2">Stap 1: Wat voor klus is het?</h2>
+                <p class="mb-4 text-gray-600 italic">De opbrengst gaat volledig naar ons zomerkamp!</p>
                 <div class="space-y-3 mb-8">
                     <label class="block border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 transition border-gray-200">
                         <input type="radio" name="categorie" value="Tuinieren" class="mr-2" required checked> 🌱 Tuinieren
@@ -46,18 +47,32 @@
                 <button type="button" onclick="showStep(2)" class="w-full bg-scout-green text-white font-bold py-4 rounded-lg shadow-lg">Volgende stap</button>
             </div>
 
-            <!-- STAP 2 -->
+            <!-- STAP 2: DETAILS -->
             <div id="step2" class="step">
                 <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-2">Stap 2: Details & Tijd</h2>
                 <div class="space-y-4">
-                    <textarea name="details" rows="3" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" placeholder="Beschrijf de klus..."></textarea>
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="date" name="datum" class="w-full border p-3 rounded-lg">
-                        <select name="tijd" class="w-full border p-3 rounded-lg">
-                            <option>Ochtend</option><option>Middag</option><option>Hele dag</option>
-                        </select>
+                    <div>
+                        <label class="block font-bold">Beschrijf de klus:</label>
+                        <textarea name="details" rows="3" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" placeholder="Wat moeten we precies doen?"></textarea>
                     </div>
-                    <input type="number" name="bedrag" class="w-full border p-3 rounded-lg" placeholder="Bedrag (€) naar keuze">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-bold text-sm">Datum:</label>
+                            <input type="date" name="datum" class="w-full border p-3 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-sm">Tijd:</label>
+                            <select name="tijd" class="w-full border p-3 rounded-lg">
+                                <option>Ochtend</option>
+                                <option>Middag</option>
+                                <option>Hele dag</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-bold">Bedrag voor ons kamp (€):</label>
+                        <input type="number" name="bedrag" class="w-full border p-3 rounded-lg" placeholder="Bedrag naar keuze">
+                    </div>
                 </div>
                 <div class="flex gap-2 mt-8">
                     <button type="button" onclick="showStep(1)" class="w-1/3 bg-gray-200 py-4 rounded-lg font-bold">Terug</button>
@@ -65,7 +80,7 @@
                 </div>
             </div>
 
-            <!-- STAP 3 -->
+            <!-- STAP 3: CONTACT -->
             <div id="step3" class="step">
                 <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-2">Stap 3: Uw informatie</h2>
                 <div class="space-y-4">
@@ -82,21 +97,22 @@
     </div>
 
     <script>
-        function showStep(n) {
-            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step' + n).classList.add('active');
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
             window.scrollTo(0,0);
         }
 
         document.getElementById('klusForm').onsubmit = function(e) {
             const email = document.getElementById('input_email').value.trim();
             const tel = document.getElementById('input_tel').value.trim();
-            if (!email && !tel) {
-                alert('Vul a.u.b. een e-mailadres of telefoonnummer in.');
+
+            if (email === "" && tel === "") {
+                alert('Vul a.u.b. een e-mailadres óf een telefoonnummer in.');
                 e.preventDefault();
                 return false;
             }
-            // Geen e.preventDefault() hieronder, laat de browser de POST uitvoeren!
+            return true;
         };
     </script>
 </body>
