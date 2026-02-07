@@ -3,154 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klusjesdag 2026 | Scouting Alblasserdam</title>
+    <title>Klusjesdag | Explorers Scouting Alblasserdam</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --scout-green: #1a5e1a; --scout-orange: #e67e22; }
         .bg-scout-green { background-color: var(--scout-green); }
-        .text-scout-green { color: var(--scout-green); }
-        /* Pagina-secties */
-        .page-section { display: none; min-height: 80vh; }
-        .page-section.active { display: block !important; }
-        /* Stap-secties binnen het formulier */
-        .form-step { display: none; }
-        .form-step.active { display: block !important; }
+        .step { display: none; }
+        .step.active { display: block !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- Header met Logo (Gefixte link) -->
-    <header class="bg-white shadow-sm py-4 border-b-4 border-scout-green">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center gap-4 text-left">
-                <!-- https://www.scouting-alblasserdam.nl/ site -->
-                <img src="
-
-" alt="Logo" class="h-16 md:h-20">
-                <div>
-                    <h2 class="text-xl font-bold text-scout-green leading-tight">Explorers <br>Alblasserdam</h2>
-                </div>
-            </div>
-            <button onclick="showPage('home')" class="text-gray-500 font-bold hover:text-scout-green">Hoofdpagina</button>
-        </div>
+    <header class="bg-white shadow-md py-4 text-center">
+        <!-- Logo van Scouting Alblasserdam -->
+        <img src="https://www.scouting-alblasserdam.nl" alt="Logo" class="h-20 mx-auto mb-2">
+        <h2 class="text-xl font-bold text-scout-green">Explorers Scouting Alblasserdam</h2>
     </header>
 
-    <!-- PAGINA 1: HET VERHAAL (HOME) -->
-    <main id="page-home" class="page-section active">
-        <section class="relative bg-scout-green text-white py-20 px-4">
-            <div class="container mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tight">Op weg naar Denemarken! 🇩🇰</h1>
-                <p class="text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed mb-10">
-                    Dit jaar hebben wij, de Explorers van Scouting Alblasserdam, een grote droom: we gaan op <strong>zomerkamp naar Denemarken!</strong> 
-                    Een buitenlands avontuur vol uitdaging, vriendschap en nieuwe culturen.
-                </p>
-                <div class="bg-white/10 p-6 rounded-2xl max-w-2xl mx-auto border border-white/20 mb-10">
-                    <p class="text-xl font-semibold italic">"Maar zo'n kamp kost natuurlijk geld. Daarom stropen wij de mouwen op tijdens onze Klusjesdag!"</p>
+    <div class="container mx-auto max-w-2xl mt-10 px-4 mb-20">
+        <!-- FORMULIER START -->
+        <form id="klusForm" action="https://formspree.io/f/mzdabryo" method="POST" class="bg-white rounded-2xl shadow-xl p-8">
+            
+            <!-- STAP 1: GLOBALE OPTIES -->
+            <div id="step1" class="step active">
+                <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-2">Stap 1: Wat voor klus is het?</h2>
+                <p class="mb-4 text-gray-600 italic">De opbrengst van deze dag gaat volledig naar ons zomerkamp!</p>
+                <div class="space-y-3 mb-8">
+                    <label class="block border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 transition border-gray-200">
+                        <input type="radio" name="categorie" value="Tuinieren" class="mr-2" required> 🌱 Tuinieren
+                    </label>
+                    <label class="block border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 transition border-gray-200">
+                        <input type="radio" name="categorie" value="Boodschappen" class="mr-2"> 🛒 Boodschappen
+                    </label>
+                    <label class="block border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 transition border-gray-200">
+                        <input type="radio" name="categorie" value="Schoonmaak" class="mr-2"> 🧹 Schoonmaak
+                    </label>
+                    <label class="block border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 transition border-gray-200">
+                        <input type="radio" name="categorie" value="Anders" class="mr-2"> ❓ Iets anders...
+                    </label>
                 </div>
-                <button onclick="showPage('klusjes')" class="bg-white text-scout-green hover:bg-gray-100 transition-all transform hover:scale-105 font-bold py-5 px-12 rounded-full text-xl shadow-2xl">
-                    🛠️ Help ons en meld een klus aan!
-                </button>
+                <button type="button" onclick="showStep(2)" class="w-full bg-scout-green text-white font-bold py-4 rounded-lg shadow-lg">Volgende stap</button>
             </div>
-        </section>
-        
-        <section class="py-16 container mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold mb-4">Hoe werkt het?</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6">
-                    <div class="text-4xl mb-4">1</div>
-                    <p>U meldt online een klusje aan (tuinieren, boodschappen, etc.).</p>
-                </div>
-                <div class="p-6">
-                    <div class="text-4xl mb-4">2</div>
-                    <p>Wij komen langs op de afgesproken datum en klaren de klus.</p>
-                </div>
-                <div class="p-6">
-                    <div class="text-4xl mb-4">3</div>
-                    <p>U geeft een vrije bijdrage die direct in onze "kamp-pot" gaat.</p>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <!-- PAGINA 2: AANMELDEN (FORMS) -->
-    <main id="page-klusjes" class="page-section py-12 px-4">
-        <div class="container mx-auto max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <form id="klusForm" action="https://formspree.io" method="POST">
-                
-                <!-- STAP 1: CATEGORIE -->
-                <div id="step1" class="form-step active p-8">
-                    <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-4">Stap 1: Wat voor klus is het?</h2>
-                    <div class="grid grid-cols-1 gap-4 mb-8">
-                        <label class="border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 flex items-center gap-4"><input type="radio" name="categorie" value="Tuinieren" required> <span>🌱 Tuinieren</span></label>
-                        <label class="border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 flex items-center gap-4"><input type="radio" name="categorie" value="Boodschappen"> <span>🛒 Boodschappen</span></label>
-                        <label class="border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 flex items-center gap-4"><input type="radio" name="categorie" value="Schoonmaak"> <span>🧹 Schoonmaak</span></label>
-                        <label class="border-2 rounded-xl p-4 cursor-pointer hover:bg-green-50 flex items-center gap-4"><input type="radio" name="categorie" value="Anders"> <span>❓ Iets anders...</span></label>
+            <!-- STAP 2: DETAILS & DATUM -->
+            <div id="step2" class="step">
+                <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-2">Stap 2: Details & Tijd</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-bold">Beschrijf de klus specifiek:</label>
+                        <textarea name="details" rows="3" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" placeholder="Bijv: Het onkruid weghalen bij de oprit..."></textarea>
                     </div>
-                    <button type="button" onclick="showStep(2)" class="w-full bg-scout-green text-white font-bold py-5 rounded-xl shadow-lg">Volgende stap</button>
-                </div>
-
-                <!-- STAP 2: DETAILS -->
-                <div id="step2" class="form-step p-8">
-                    <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-4">Stap 2: Details & Tijd</h2>
-                    <div class="space-y-4 mb-8">
-                        <textarea name="omschrijving" rows="3" class="w-full border-2 p-4 rounded-xl outline-none focus:border-scout-green" placeholder="Wat moeten we precies doen?"></textarea>
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="date" name="datum" class="border-2 p-4 rounded-xl w-full">
-                            <select name="dagdeel" class="border-2 p-4 rounded-xl w-full">
-                                <option>Ochtend</option><option>Middag</option><option>Hele dag</option>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-bold text-sm">Datum:</label>
+                            <input type="date" name="datum" class="w-full border p-3 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-sm">Tijdsperiode:</label>
+                            <select name="tijd" class="w-full border p-3 rounded-lg">
+                                <option>Ochtend</option>
+                                <option>Middag</option>
+                                <option>Hele dag</option>
                             </select>
                         </div>
-                        <input type="number" name="bedrag" placeholder="Uw vrije bijdrage (€) voor Denemarken" class="w-full border-2 p-4 rounded-xl">
                     </div>
-                    <div class="flex gap-4">
-                        <button type="button" onclick="showStep(1)" class="w-1/3 bg-gray-100 py-4 rounded-xl font-bold">Terug</button>
-                        <button type="button" onclick="showStep(3)" class="w-2/3 bg-scout-green text-white py-4 rounded-xl font-bold">Laatste stap</button>
+                    <div>
+                        <label class="block font-bold">Wat wilt u geven voor ons kamp? (€)</label>
+                        <p class="text-xs text-gray-500 mb-1">Betaling kan contant of via QR-code na afloop van de klus.</p>
+                        <input type="number" name="bedrag" class="w-full border p-3 rounded-lg" placeholder="Bedrag naar keuze">
                     </div>
                 </div>
+                <div class="flex gap-2 mt-8">
+                    <button type="button" onclick="showStep(1)" class="w-1/3 bg-gray-200 py-4 rounded-lg font-bold">Terug</button>
+                    <button type="button" onclick="showStep(3)" class="w-2/3 bg-scout-green text-white py-4 rounded-lg font-bold shadow-lg">Laatste stap</button>
+                </div>
+            </div>
 
-                <!-- STAP 3: CONTACT -->
-                <div id="step3" class="form-step p-8">
-                    <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-4">Stap 3: Uw informatie</h2>
-                    <div class="space-y-4 mb-8">
-                        <input type="text" name="naam" id="input_naam" placeholder="Uw Naam" class="w-full border-2 p-4 rounded-xl" required>
-                        <input type="email" name="email" id="input_email" placeholder="E-mailadres (optioneel)" class="w-full border-2 p-4 rounded-xl">
-                        <input type="tel" name="tel" id="input_tel" placeholder="Telefoonnummer (optioneel)" class="w-full border-2 p-4 rounded-xl">
-                    </div>
-                    <div class="flex gap-4">
-                        <button type="button" onclick="showStep(2)" class="w-1/3 bg-gray-200 py-4 rounded-xl font-bold">Terug</button>
-                        <button type="submit" class="w-2/3 bg-orange-500 text-white py-4 rounded-xl font-bold">Klus Definitief Aanmelden</button>
-                    </div>
+            <!-- STAP 3: CONTACTINFO -->
+            <div id="step3" class="step">
+                <h2 class="text-2xl font-bold mb-6 text-scout-green border-b pb-2">Stap 3: Uw informatie</h2>
+                <p class="text-sm text-gray-500 mb-4">* Vul uw naam in en minimaal één contactmethode (E-mail of Telefoon).</p>
+                <div class="space-y-4">
+                    <input type="text" name="naam" id="input_naam" placeholder="Uw Naam" class="w-full border p-3 rounded-lg" required>
+                    <input type="email" name="email" id="input_email" placeholder="E-mailadres (optioneel)" class="w-full border p-3 rounded-lg">
+                    <input type="tel" name="telefoon" id="input_tel" placeholder="Telefoonnummer (optioneel)" class="w-full border p-3 rounded-lg">
                 </div>
-            </form>
-        </div>
-    </main>
+                <div class="flex gap-2 mt-8">
+                    <button type="button" onclick="showStep(2)" class="w-1/3 bg-gray-200 py-4 rounded-lg font-bold">Terug</button>
+                    <button type="submit" class="w-2/3 bg-orange-500 text-white py-4 rounded-lg font-bold shadow-lg">Klus Aanmelden</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <script>
-        // Wisselen tussen hoofdpagina's
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + pageId).classList.add('active');
+        // Functie om tussen stappen te wisselen
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // Wisselen tussen formulier stappen
-        function showStep(stepNum) {
-            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step' + stepNum).classList.add('active');
-        }
-
-        // Contact-check bij versturen
+        // Check of er contactinfo is ingevuld bij verzenden
         document.getElementById('klusForm').onsubmit = function(e) {
             const email = document.getElementById('input_email').value.trim();
             const tel = document.getElementById('input_tel').value.trim();
-            if (!email && !tel) {
-                alert('Vul a.u.b. minimaal één contactmethode in (E-mail of Telefoon).');
-                e.preventDefault(); return false;
+
+            if (email === "" && tel === "") {
+                alert('Vul a.u.b. een e-mailadres óf een telefoonnummer in zodat we u kunnen bereiken.');
+                e.preventDefault();
+                return false;
             }
             return true;
         };
     </script>
 </body>
 </html>
-
-
