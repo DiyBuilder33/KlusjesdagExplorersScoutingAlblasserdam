@@ -47,56 +47,63 @@
         
 <style>
   .explorer-donation-bar {
-    background-color: #f2f2f2; /* Lichte achtergrond voor de sectie */
+    background-color: #f9f9f9; /* Iets lichtere achtergrond voor een frisse look */
     padding: 40px 20px;
     text-align: center;
-    border-top: 3px solid #b33917; /* Explorer brique kleur accent */
-    border-bottom: 3px solid #b33917;
-    margin: 20px 0;
+    /* De lijnen boven en onder zijn nu hetzelfde groen als de site */
+    border-top: 4px solid #077840; 
+    border-bottom: 4px solid #077840;
+    margin: 30px 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .explorer-donation-bar h2 {
-    color: #098A44;
+    color: #077840; /* Titel in groen voor eenheid */
     margin-bottom: 10px;
+    font-weight: bold;
   }
 
   .donate-btn-explorer {
-    background-color: #b33917; /* Officiële Explorer brique kleur */
+    background-color: #077840; /* De groene kleur van je site */
     color: white !important;
-    padding: 15px 30px;
+    padding: 15px 35px;
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
     border-radius: 5px;
     display: inline-block;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 
   .donate-btn-explorer:hover {
-    background-color: #8a2b12; /* Donkerdere tint bij hover */
+    background-color: #055a30; /* Iets donkerder groen bij eroverheen bewegen */
+    transform: translateY(-2px);
     text-decoration: none;
   }
 
   .donation-text {
-    margin-bottom: 20px;
-    color: #555;
-    max-width: 600px;
+    margin-bottom: 25px;
+    color: #444;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
   }
 </style>
 
 <div class="explorer-donation-bar">
   <h2>Steun de Explorers Alblasserdam</h2>
-  <p class="donation-text">Help ons met nieuwe materialen en vette expedities. Elke bijdrage maakt een verschil voor onze groep!</p>
+  <p class="donation-text">
+    Help de Explorers met nieuwe materialen en vette expedities. 
+    Met jouw bijdrage maken we onze dromen waar!
+  </p>
   
-  <!-- Vervang de '#' hieronder door je eigen PayPal-link of Tikkie-link -->
+  <!-- Vergeet niet de '#' hieronder te vervangen door je betaallink -->
   <a href="#" class="donate-btn-explorer">Nu Doneren</a>
 </div>
-
         <section id="acties-sectie" class="py-20 bg-gray-50">
             <div class="container mx-auto max-w-4xl px-6">
                 <h2 class="text-4xl font-black mb-12 text-center text-scout-green uppercase tracking-tight">Onze Acties</h2>
@@ -221,6 +228,7 @@
         }
     });
 </script>
+
 
 
 
